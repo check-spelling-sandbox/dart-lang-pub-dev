@@ -241,7 +241,7 @@ class StaticUrls {
   late final defaultProfilePng = getAssetUrl(
       '/static/img/material-icon-twotone-account-circle-white-24dp.png');
   late final githubMarkdownCss = getAssetUrl('/static/css/github-markdown.css');
-  late final dartdocGithubCss =
+  late final dartdocGitHubCss =
       getAssetUrl('/static/dartdoc/resources/github.css');
   late final dartdocStylesCss =
       getAssetUrl('/static/dartdoc/resources/styles.css');

@@ -119,7 +119,7 @@ extension DartDocPageRender on DartDocPage {
         d.link(
             rel: 'stylesheet',
             type: 'text/css',
-            href: staticUrls.dartdocGithubCss),
+            href: staticUrls.dartdocGitHubCss),
         if (activeConfiguration.isStaging)
           d.link(
               rel: 'stylesheet',

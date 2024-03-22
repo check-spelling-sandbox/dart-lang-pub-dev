@@ -375,7 +375,7 @@ void main() {
 
     group('Uploading with GitHub Actions', () {
       testWithProfile('GitHub Actions cannot upload new package', fn: () async {
-        final token = createFakeGithubActionToken(
+        final token = createFakeGitHubActionToken(
           repository: 'x/y',
           ref: 'refs/tag/1',
         );
@@ -395,7 +395,7 @@ void main() {
       testWithProfile(
           'GitHub Actions cannot upload new version to existing package',
           fn: () async {
-        final token = createFakeGithubActionToken(
+        final token = createFakeGitHubActionToken(
           repository: 'x/y',
           ref: 'refs/tag/1',
         );
@@ -420,7 +420,7 @@ void main() {
             await client.setAutomatedPublishing(
               'oxygen',
               AutomatedPublishingConfig(
-                github: GithubPublishingConfig(
+                github: GitHubPublishingConfig(
                   isEnabled: true,
                   repository: 'a/b',
                   tagPattern: '{{version}}',
@@ -429,7 +429,7 @@ void main() {
             );
           },
         );
-        final token = createFakeGithubActionToken(
+        final token = createFakeGitHubActionToken(
           repository: 'x/y',
           ref: 'refs/tag/1',
         );
@@ -455,7 +455,7 @@ void main() {
             await client.setAutomatedPublishing(
               'oxygen',
               AutomatedPublishingConfig(
-                github: GithubPublishingConfig(
+                github: GitHubPublishingConfig(
                   isEnabled: true,
                   repository: 'a/b',
                   tagPattern: '{{version}}',
@@ -464,7 +464,7 @@ void main() {
             );
           },
         );
-        final token = createFakeGithubActionToken(
+        final token = createFakeGitHubActionToken(
           repository: 'a/b',
           ref: 'refs/unknown-ref-type/1',
         );
@@ -490,7 +490,7 @@ void main() {
             await client.setAutomatedPublishing(
               'oxygen',
               AutomatedPublishingConfig(
-                github: GithubPublishingConfig(
+                github: GitHubPublishingConfig(
                   isEnabled: true,
                   repository: 'a/b',
                   tagPattern: '{{version}}',
@@ -499,7 +499,7 @@ void main() {
             );
           },
         );
-        final token = createFakeGithubActionToken(
+        final token = createFakeGitHubActionToken(
           repository: 'a/b',
           ref: 'refs/tags/1',
         );
@@ -527,7 +527,7 @@ void main() {
               await client.setAutomatedPublishing(
                 'oxygen',
                 AutomatedPublishingConfig(
-                  github: GithubPublishingConfig(
+                  github: GitHubPublishingConfig(
                     isEnabled: true,
                     repository: 'a/b',
                     tagPattern: '{{version}}',
@@ -537,7 +537,7 @@ void main() {
             },
           );
           final pkg = await packageBackend.lookupPackage('oxygen');
-          pkg!.automatedPublishing!.githubLock = GithubPublishingLock(
+          pkg!.automatedPublishing!.githubLock = GitHubPublishingLock(
             repositoryOwnerId: 'x',
             repositoryId: 'y',
           );
@@ -545,13 +545,13 @@ void main() {
         }
 
         final badTokens = [
-          createFakeGithubActionToken(
+          createFakeGitHubActionToken(
             repository: 'a/b',
             ref: 'refs/tags/2.2.0',
             repositoryId: 'x2',
             repositoryOwnerId: 'y',
           ),
-          createFakeGithubActionToken(
+          createFakeGitHubActionToken(
             repository: 'a/b',
             ref: 'refs/tags/2.2.0',
             repositoryId: 'x',
@@ -590,7 +590,7 @@ void main() {
             await client.setAutomatedPublishing(
               'oxygen',
               AutomatedPublishingConfig(
-                github: GithubPublishingConfig(
+                github: GitHubPublishingConfig(
                   isEnabled: true,
                   repository: 'a/b',
                   tagPattern: '{{version}}',
@@ -599,7 +599,7 @@ void main() {
             );
           },
         );
-        final token = createFakeGithubActionToken(
+        final token = createFakeGitHubActionToken(
           repository: 'a/b',
           ref: 'refs/tags/2.2.0',
         );
@@ -625,7 +625,7 @@ void main() {
             await client.setAutomatedPublishing(
               '_dummy_pkg',
               AutomatedPublishingConfig(
-                github: GithubPublishingConfig(
+                github: GitHubPublishingConfig(
                   isEnabled: true,
                   repository: 'a/b',
                   tagPattern: '{{version}}',
@@ -634,7 +634,7 @@ void main() {
             );
           },
         );
-        final token = createFakeGithubActionToken(
+        final token = createFakeGitHubActionToken(
           repository: 'a/b',
           ref: 'refs/tags/2.2.0',
           repositoryId: 'repo-id-1',
@@ -698,7 +698,7 @@ void main() {
             await client.setAutomatedPublishing(
               'oxygen',
               AutomatedPublishingConfig(
-                github: GithubPublishingConfig(
+                github: GitHubPublishingConfig(
                   isEnabled: true,
                   repository: 'a/b',
                   tagPattern: '{{version}}',
@@ -709,7 +709,7 @@ void main() {
             );
           },
         );
-        final token = createFakeGithubActionToken(
+        final token = createFakeGitHubActionToken(
           repository: 'a/b',
           ref: 'refs/tags/2.2.0',
         );
@@ -736,7 +736,7 @@ void main() {
             await client.setAutomatedPublishing(
               'oxygen',
               AutomatedPublishingConfig(
-                github: GithubPublishingConfig(
+                github: GitHubPublishingConfig(
                   isEnabled: true,
                   repository: 'a/b',
                   tagPattern: '{{version}}',
@@ -747,7 +747,7 @@ void main() {
             );
           },
         );
-        final token = createFakeGithubActionToken(
+        final token = createFakeGitHubActionToken(
           repository: 'a/b',
           ref: 'refs/tags/2.2.0',
           environment: 'staging',
@@ -775,7 +775,7 @@ void main() {
             await client.setAutomatedPublishing(
               'oxygen',
               AutomatedPublishingConfig(
-                github: GithubPublishingConfig(
+                github: GitHubPublishingConfig(
                   isEnabled: true,
                   repository: 'a/b',
                   tagPattern: 'v{{version}}',
@@ -786,7 +786,7 @@ void main() {
             );
           },
         );
-        final token = createFakeGithubActionToken(
+        final token = createFakeGitHubActionToken(
           repository: 'a/b',
           ref: 'refs/tags/v2.2.0',
           environment: 'prod',

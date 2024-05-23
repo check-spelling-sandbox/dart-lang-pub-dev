@@ -225,7 +225,7 @@ class TaskBackend {
       scheduleMicrotask(() async {
         await pool.withResource(() async {
           try {
-            await trackPackage(p.name!, updateDependants: false);
+            await trackPackage(p.name!, updateDependents: false);
           } catch (e, st) {
             _log.severe('failed to track state for "${p.name}"', e, st);
             if (error == null) {
@@ -319,7 +319,7 @@ class TaskBackend {
         seen[p.name!] = p.updated!;
 
         // Check the package
-        await trackPackage(p.name!, updateDependants: true);
+        await trackPackage(p.name!, updateDependents: true);
       }
 
       // Cleanup the [seen] map for anything older than [since], as this won't
@@ -333,7 +333,7 @@ class TaskBackend {
 
   Future<void> trackPackage(
     String packageName, {
-    bool updateDependants = false,
+    bool updateDependents = false,
   }) async {
     var lastVersionCreated = initialTimestamp;
     String? latestVersion;
@@ -358,7 +358,7 @@ class TaskBackend {
       latestVersion = package.latestVersion;
 
       // Update the timestamp for when the last version was published.
-      // This is used if we need to update dependants.
+      // This is used if we need to update dependents.
       lastVersionCreated = packageVersions.map((pv) => pv.created!).max;
 
       // If package is not visible, we should remove it!
@@ -454,7 +454,7 @@ class TaskBackend {
       await _purgeCache(packageName, latestVersion);
     }
 
-    if (updateDependants &&
+    if (updateDependents &&
         !lastVersionCreated.isAtSameMomentAs(initialTimestamp)) {
       await _updateLastDependencyChangedForDependents(
         packageName,
